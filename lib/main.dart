@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notesapp/views/notes_view.dart';
 
 void main() {
   runApp(const NotesApp());
@@ -9,7 +10,11 @@ void main() {
 
     @override
     Widget build(BuildContext context) {
-      return Container ();
+      return MaterialApp(
+        theme: ThemeData(brightness: Brightness.dark),
+         // theme: ThemeData.dark(), = theme: ThemeData(brightness: Brightness.dark, ) = theme: ThemeData(scaffoldBackgroundColor: Colors.black)
+        home: const NotesView(),
+      );
     }
   }
 
