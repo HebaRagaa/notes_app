@@ -11,7 +11,10 @@ void main() {
     @override
     Widget build(BuildContext context) {
       return MaterialApp(
-        theme: ThemeData(brightness: Brightness.dark),
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData( brightness: Brightness.dark ,
+        fontFamily: 'Poppins'
+        ),
          // theme: ThemeData.dark(), = theme: ThemeData(brightness: Brightness.dark, ) = theme: ThemeData(scaffoldBackgroundColor: Colors.black)
         home: const NotesView(),
       );
