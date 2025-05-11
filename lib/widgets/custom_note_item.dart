@@ -2,13 +2,23 @@
 
  import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:notesapp/views/edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
    const NoteItem({super.key});
 
    @override
    Widget build(BuildContext context) {
-     return  Container(
+     return GestureDetector(
+       onTap: ()
+       {
+         Navigator.push(context, MaterialPageRoute(builder: (context)
+         {
+           return  const EditNoteView();
+         }),
+         );
+       },
+       child: Container(
      padding: EdgeInsets.only(top: 24, bottom: 24, left: 16),
        decoration: BoxDecoration(
          color: Color(0xffFFCC80),
@@ -52,7 +62,7 @@ class NoteItem extends StatelessWidget {
            )
          ],
        ),
-
+       )
      );
    }
  }
