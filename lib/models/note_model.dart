@@ -1,11 +1,21 @@
 
+ import 'package:hive/hive.dart';
 
-  class NoteModel  {
-
+ part 'note_model.g.dart';
+ //وده اللي بيجنريت الفايل والجي اختصار لكلمة جينراتيد وطبعا دارت يعني عايزه لغة دارت ولو حرف غلط ف الاسم نوت موديل يبقى غلط
+//flutter packages pub run build_runner build ده اللي بكتبه ف التيرمنال عشان يجنريت
+@HiveType(typeId: 0)
+//ده ماينفعش يتكرر الزيرو تاني ف اي كلاس جوه البروجيكت لكن اللي هيبقى جوه الكلاس من زيرو لتلاته ممكن يتكرر ف كلاسات تاني
+  class NoteModel extends HiveObject {
+  //وبكده خليته اوبجيكت جاهز انه يتخزن ف هايف
+   @HiveField(0)
   final String title;
-  final String subTitle;
-  final String date;
-  final int color;
+   @HiveField(1)
+   final String subTitle;
+   @HiveField(2)
+   final String date;
+   @HiveField(3)
+   final int color;
 
   NoteModel ({
     required this.title,
