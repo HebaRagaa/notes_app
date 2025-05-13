@@ -4,11 +4,14 @@ import 'package:notesapp/widgets/constants.dart';
 
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key});
+  const CustomButton({super.key, this.onTap});
 
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
       width: MediaQuery.of(context).size.width,
       //كده بقوله خد الويدس بتاع الشاشه كلها
       height: 55,
@@ -24,6 +27,7 @@ class CustomButton extends StatelessWidget {
           ),
         ),
       ),
+      )
     );
   }
 }
