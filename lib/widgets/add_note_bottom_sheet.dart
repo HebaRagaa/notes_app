@@ -10,7 +10,11 @@ class AddNoteBottomSheet extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-      return Padding(
+      return BlocProvider(
+      //وهنا برضو هيكريت الكيوبت ولكن ف المكان اللي محتاجه ويقلل استعمال الريسورسس
+          create: (context) => AddNoteCubit(),
+       //وهنا عشان بستعمله مع الادد بوتم شيت
+       child: Padding(
         padding:  const EdgeInsets.symmetric(horizontal: 16),
       child:  BlocConsumer <AddNoteCubit , AddNoteState> (
 
@@ -31,7 +35,7 @@ class AddNoteBottomSheet extends StatelessWidget {
        )
             );
           },
-
+      )
       )
       );
     }

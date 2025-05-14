@@ -10,6 +10,7 @@ import 'package:notesapp/widgets/constants.dart';
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized(); // دي كمان كويس تحطها قبل أي async
+  debugPrintRebuildDirtyWidgets = true;
 
   Bloc.observer = SimpleBlocObserver() ;
   await Hive.initFlutter();
@@ -32,18 +33,22 @@ void main() async {
     //وعايز الريسورس ده يفضل مفتوح طول الابلكيشن حتى لو مش محتاجه ف الوقت الحالي
      //وده استهلاك للريسورس لو حطيته ف المين دارت لكن الافضل ابعته للاسكرين اللي محتاجاه بس
 
-      return MultiBlocProvider(
-          providers: [
-            BlocProvider (create: (context) => AddNoteCubit()),
-          ] ,
-        child: MaterialApp(
-        debugShowCheckedModeBanner: false,
+      // return MultiBlocProvider(
+      //   //ليه بستخدم الروفايدر؟ عشان ابروفيد الادد نوت كيوبت لكل التطبيق بتاعي
+      //     providers: [
+      //       //وبمجرد كده بيشغل الكيوبت وبيكون جاهز لاستعماله مع كل الشاشات
+      //       //وده ليه؟ عشان فوق الماتريال ااب
+      //       BlocProvider (create: (context) => AddNoteCubit()),
+      //       //كده الكيوبت هيفضل مفتوح دايما ويستهلك ريسورسس وانا ف الابلكيشن ده مش محتاجه كده
+      //     ] ,
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
         theme: ThemeData( brightness: Brightness.dark ,
         fontFamily: 'Poppins'
         ),
          // theme: ThemeData.dark(), = theme: ThemeData(brightness: Brightness.dark, ) = theme: ThemeData(scaffoldBackgroundColor: Colors.black)
         home: const NotesView(),
-        )
+
       );
     }
   }
