@@ -9,12 +9,17 @@ import 'package:notesapp/widgets/constants.dart';
 
 void main() async {
 
+  WidgetsFlutterBinding.ensureInitialized(); // دي كمان كويس تحطها قبل أي async
+
   Bloc.observer = SimpleBlocObserver() ;
   await Hive.initFlutter();
-//وهنا بقولها يا هايف افتحي بوكس خزني فيه البيانات زي الكوليكشن ف البوست مان
- await Hive.openBox(kNotesBox);
- Hive.registerAdapter(NoteModelAdapter());
- //وبعرف الادابتر اللي هحطه بين القوسين من الموديل نوت جنريت اللي هو اسم الكلاس فيها
+  Hive.registerAdapter(NoteModelAdapter()); // الأول تعرف الـ Adapter
+  //وبعرف الادابتر اللي هحطه بين القوسين من الموديل نوت جنريت اللي هو اسم الكلاس فيها
+  await Hive.openBox<NoteModel>(kNotesBox); // بعدين تفتح الـ box واحدد نوعه النوت موديل
+  // لاحظ هنا إنك فتحت الـ box قبل ما تسجل الـ Adapter // وده ممكن يعمل مشاكل أو warning في بعض الحالات
+  // ، لأن المفروض تسجل الـ Adapter الأول وبعدين تفتح الـ box.
+  //وهنا بقولها يا هايف افتحي بوكس خزني فيه البيانات زي الكوليكشن ف البوست مان
+
   runApp(const NotesApp());
 }
 
