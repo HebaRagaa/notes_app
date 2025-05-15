@@ -50,30 +50,35 @@ class _AddNoteFormState extends State<AddNoteForm> {
             const  SizedBox(
               height: 32,
             ),
-            CustomButton(
-              onTap: () {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                  //وهنا بعمل تريجر للااد نوت كيوبت من خلال البلوك بروفيدر
+            BlocBuilder<AddNoteCubit, AddNoteState>(
+                builder: (context, state) {
+                  return CustomButton(
+                    isLoading: state is AddNoteLoading ? true : false,
+                    onTap: () {
+                      if (formKey.currentState!.validate()) {
+                        formKey.currentState!.save();
+                        //وهنا بعمل تريجر للااد نوت كيوبت من خلال البلوك بروفيدر
 
-                  var noteModel = NoteModel(
-                      title: title!,
-                      subTitle: subTitle!,
-                      date: DateTime.now().toString(),
-                      // ف النوت موديل خزنت الديت ك استرينج عشان تبقى بريميتيف تايب بدل ما اعمل تايب ادابتر لكل اوبجيكت
-                      color: Colors.blue.toARGB32(),
-                    // toARGB32() بتستعمل بدل دوت فاليو وبرضو بنجيب بيها الفاليو
-                    );
-                  BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+                        var noteModel = NoteModel(
+                          title: title!,
+                          subTitle: subTitle!,
+                          date: DateTime.now().toString(),
+                          // ف النوت موديل خزنت الديت ك استرينج عشان تبقى بريميتيف تايب بدل ما اعمل تايب ادابتر لكل اوبجيكت
+                          color: Colors.blue.toARGB32(),
+                          // toARGB32() بتستعمل بدل دوت فاليو وبرضو بنجيب بيها الفاليو
+                        );
+                        BlocProvider.of<AddNoteCubit>(context).addNote(
+                            noteModel);
+                      } else {
+                        autovalidateMode = AutovalidateMode.always;
+                        setState(() {
 
-                }else {
-                  autovalidateMode = AutovalidateMode.always;
-                  setState(() {
-
-                  });
+                        });
+                      }
+                    },
+                  );
                 }
-              },
-            ),
+                ),
             const  SizedBox(
               height: 16,
             ),
