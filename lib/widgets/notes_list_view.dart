@@ -24,9 +24,11 @@ class NotesListView extends StatelessWidget {
                   //ولغيت دي عشان لغيت الاستيت اللي مالوش داعي ف الكيوبت عشان كده كده هيبقى سكسيس
                   padding: EdgeInsets.zero,
                   itemBuilder: (context, index) {
-                    return const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 4),
-                      child: NoteItem(),
+                    return  Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: NoteItem(
+                        notes: notes[index],
+                      ),
                     );
                   }
               )
