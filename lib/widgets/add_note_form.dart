@@ -6,6 +6,7 @@ import 'package:notesapp/cubits/add_note_cubit.dart';
 import 'package:notesapp/models/note_model.dart';
 import 'package:notesapp/widgets/custom_button.dart';
 import 'package:notesapp/widgets/custom_text_field.dart';
+import 'package:intl/intl.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
@@ -59,10 +60,15 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         formKey.currentState!.save();
                         //وهنا بعمل تريجر للااد نوت كيوبت من خلال البلوك بروفيدر
 
+                        var currentDate= DateTime.now();
+
+                        var formattedCurrentDate=
+                               DateFormat.yMd().format(currentDate);
+
                         var noteModel = NoteModel(
                           title: title!,
                           subTitle: subTitle!,
-                          date: DateTime.now().toString(),
+                          date: formattedCurrentDate,
                           // ف النوت موديل خزنت الديت ك استرينج عشان تبقى بريميتيف تايب بدل ما اعمل تايب ادابتر لكل اوبجيكت
                           color: Colors.blue.toARGB32(),
                           // toARGB32() بتستعمل بدل دوت فاليو وبرضو بنجيب بيها الفاليو
