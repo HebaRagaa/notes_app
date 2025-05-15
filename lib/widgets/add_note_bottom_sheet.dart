@@ -29,7 +29,13 @@ class AddNoteBottomSheet extends StatelessWidget {
             //الابسورب بوينتر دي تمنعك من لانك تعرف تتعامل مع اي حاجه تاني ع الاسكرين اثناء اللودينج
             absorbing: state is AddNoteLoading ? true : false,
             child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: EdgeInsets.only(
+              left: 16,
+              right: 16,
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+              //دي عشان احل مشكله الاسكرول لما افتح الكيبورد هى بتبقى موجوده ف الاسكاف فولد وانت بتعملها ترو او فولس بس
+           //بقول للميديا كواري عايز معلومات عن الديفايز وعن الكيبورد والفيو انسيتس بوتوم دي بتعبر عن ارتفاع الكيبورد
+            ),
             child: const SingleChildScrollView(
          //ماينفعش المودل بروجرس هد تبقى جوه سينجل اسكرول فيو
        child: AddNoteForm(),

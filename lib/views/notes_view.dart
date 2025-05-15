@@ -17,6 +17,8 @@ class NotesView extends StatelessWidget {
          onPressed: ()
          {
            showModalBottomSheet(
+             isScrollControlled: true,
+             //ودي عشان تسمح اني اعمل اسكرول جوه البوتوم شيت لما اضيف نوت
              shape: RoundedRectangleBorder(
                borderRadius: BorderRadius.circular(16)
              ),
