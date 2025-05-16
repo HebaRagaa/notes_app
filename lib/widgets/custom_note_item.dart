@@ -49,7 +49,10 @@ class NoteItem extends StatelessWidget {
         ),
         trailing: Transform.translate(
           offset: Offset(0, -20), // السالب يعني لفوق
-       child:  IconButton(onPressed: () {} ,
+       child:  IconButton(
+         onPressed: () {
+           notes.delete();
+         } ,
             icon: Icon(
             FontAwesomeIcons.trash,
             color: Colors.black,
