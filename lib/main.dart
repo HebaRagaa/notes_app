@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:notesapp/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notesapp/models/note_model.dart';
 import 'package:notesapp/simple_bloc_observer.dart';
 import 'package:notesapp/views/notes_view.dart';
@@ -40,14 +41,16 @@ void main() async {
       //       BlocProvider (create: (context) => AddNoteCubit()),
       //       //كده الكيوبت هيفضل مفتوح دايما ويستهلك ريسورسس وانا ف الابلكيشن ده مش محتاجه كده
       //     ] ,
-        return MaterialApp(
+        return BlocProvider(
+            create: (context) => NotesCubit(),
+      child: MaterialApp(
           debugShowCheckedModeBanner: false,
         theme: ThemeData( brightness: Brightness.dark ,
         fontFamily: 'Poppins'
         ),
          // theme: ThemeData.dark(), = theme: ThemeData(brightness: Brightness.dark, ) = theme: ThemeData(scaffoldBackgroundColor: Colors.black)
         home: const NotesView(),
-
+      )
       );
     }
   }

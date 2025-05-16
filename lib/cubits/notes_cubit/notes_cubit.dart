@@ -19,7 +19,7 @@ class NotesCubit extends Cubit<NotesState> {
        notes = notesBox.values.toList();
       //List<NoteModel>? notes= notesBox.values.toList();
       //لو وقفت عالفاليو هتلاقيها بتاخد اتريبل ومعناها كوليكشن اوف حاجه زي هنا النوت موديل اللي هى بين اكبر واصغر من
-     // emit(NotesSuccess(notes!));
+      emit(NotesSuccess(notes!));
     }
   }
  //انا لما ضيفت الادد نوتس كيوبت ف البوتوم شيت كنت لما افتح الشيت يعمل كرييت للكيوبت واجي اقفله ف يقفل الكيوبت وبكده وفرت ريسورسز
