@@ -10,13 +10,14 @@
   //وبكده خليته اوبجيكت جاهز انه يتخزن ف هايف
   //لو لاحظت فايدة هايف اوبجيكت ضافتلك ميزة انك تعمل ديليت للنوت من نوت دوت ديليت ع طول ف النوت ايتم
    @HiveField(0)
-  final String title;
+   String title;
+   //المفروض انهم ب فاينال بس ممكن اغيره لو ممكن يتغير زي النوت ممكن نعملها ايديت
    @HiveField(1)
-   final String subTitle;
+    String subTitle;
    @HiveField(2)
    final String date;
    @HiveField(3)
-   final int color;
+    int color;
 
   NoteModel ({
     required this.title,

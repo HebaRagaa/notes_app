@@ -8,9 +8,9 @@ import 'package:notesapp/models/note_model.dart';
 import 'package:notesapp/views/edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
-   const NoteItem({super.key, required this.notes});
+   const NoteItem({super.key, required this.note});
 
- final NoteModel notes;
+ final NoteModel note;
  //وبدل ماتفضل تقول تايتل وسب تايتل تاخد النوت موديل
   //يعني لو عندك شوية بيانات شبه كده بتحطهم ف موديل وتتعامل معاه هو بدل ماتكون كل واحده لحده
    @override
@@ -20,14 +20,16 @@ class NoteItem extends StatelessWidget {
        {
          Navigator.push(context, MaterialPageRoute(builder: (context)
          {
-           return  const EditNoteView();
+           return EditNoteView(
+          note: note,
+           );
          }),
          );
        },
        child: Container(
      padding: EdgeInsets.only(top: 24, bottom: 24, left: 16),
        decoration: BoxDecoration(
-         color: Color(notes.color),
+         color: Color(note.color),
          borderRadius: BorderRadius.circular(16),
        ),
        child: Column(
@@ -36,7 +38,7 @@ class NoteItem extends StatelessWidget {
          children: [
       ListTile(
         title: Text(
-           notes.title,
+           note.title,
           style: const TextStyle(color: Colors.black ,
           fontSize: 26),
          ),
@@ -44,7 +46,7 @@ class NoteItem extends StatelessWidget {
         subtitle: Padding(
           padding: EdgeInsets.only(top: 16, bottom: 16, right: 3),
           child: Text(
-       notes.subTitle,
+       note.subTitle,
         style: const TextStyle(color: Colors.black38 ,
         fontSize: 17 ),
           ),
@@ -53,7 +55,7 @@ class NoteItem extends StatelessWidget {
           offset: Offset(0, -20), // السالب يعني لفوق
        child:  IconButton(
          onPressed: () {
-           notes.delete();
+           note.delete();
 
            BlocProvider.of<NotesCubit>(context).fetchAllNotes();
            //وهنا بعمل ريفريش للنوتس بعد الديليت عشان تظهر ع طول الليسته الجديده بالفيتش
@@ -70,7 +72,7 @@ class NoteItem extends StatelessWidget {
            Padding(
              padding: EdgeInsets.only(right: 24),
           child: Text(
-          notes.date,
+          note.date,
            style: TextStyle(color: Colors.black45,
            fontSize: 16
            ),)

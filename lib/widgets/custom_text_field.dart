@@ -4,15 +4,18 @@ import 'package:notesapp/widgets/constants.dart';
 
 class CustomTextField extends StatelessWidget {
     const CustomTextField (
-        {super.key, required this.hint, this.maxLines = 1, this.onSaved  });
+        {super.key, required this.hint, this.maxLines = 1, this.onSaved, this.onChanged  });
 
     final String hint ;
     final int maxLines;
     //ضفت الماكس لاينز عشان التيكست فيلد اللي تحت بتاع الكونتنت اكبر من اللي فوقه بتاع التايتل
  final void Function(String?)? onSaved ;
+    final void Function(String?)? onChanged ;
+
     @override
     Widget build(BuildContext context) {
       return TextFormField(
+        onChanged: onChanged,
         //هبتدي استقبل البيانات
         onSaved: onSaved,
         //لو هتشتغل ع اكتر من تيكست فيلد فلازم تستقبله ف الفاليديتور هنا()
