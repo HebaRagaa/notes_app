@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notesapp/cubits/add_note_cubit.dart';
 import 'package:notesapp/models/note_model.dart';
+import 'package:notesapp/widgets/color_list_view.dart';
 import 'package:notesapp/widgets/custom_button.dart';
 import 'package:notesapp/widgets/custom_text_field.dart';
 import 'package:intl/intl.dart';
@@ -20,12 +21,13 @@ class AddNoteForm extends StatefulWidget {
 class _AddNoteFormState extends State<AddNoteForm> {
 
   GlobalKey<FormState> formKey = GlobalKey();
-  AutovalidateMode autovalidateMode = AutovalidateMode.disabled ;
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
-  String? title , subTitle ;
+  String? title, subTitle;
+
   @override
   Widget build(BuildContext context) {
-    return  Form(
+    return Form(
         key: formKey,
         autovalidateMode: autovalidateMode,
         child: Column(
@@ -33,24 +35,28 @@ class _AddNoteFormState extends State<AddNoteForm> {
             const SizedBox(height: 32,),
             CustomTextField(
               onSaved: (value) {
-                title= value;
+                title = value;
               },
               hint: 'title',
             ),
-            const  SizedBox(
+            const SizedBox(
               height: 16,
             ),
             CustomTextField(
               onSaved: (value) {
-                subTitle= value;
+                subTitle = value;
                 //يعني الفاليو اللي هتجيلك خزنها ف الساب تايتل
               },
               hint: 'content',
               maxLines: 5,
             ),
-            const  SizedBox(
+
+          const  ColorsListView(),
+
+            const SizedBox(
               height: 32,
             ),
+
             BlocBuilder<AddNoteCubit, AddNoteState>(
                 builder: (context, state) {
                   return CustomButton(
@@ -60,10 +66,10 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         formKey.currentState!.save();
                         //وهنا بعمل تريجر للااد نوت كيوبت من خلال البلوك بروفيدر
 
-                        var currentDate= DateTime.now();
+                        var currentDate = DateTime.now();
 
-                        var formattedCurrentDate=
-                               DateFormat.yMd().format(currentDate);
+                        var formattedCurrentDate =
+                        DateFormat.yMd().format(currentDate);
 
                         var noteModel = NoteModel(
                           title: title!,
@@ -84,8 +90,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
                     },
                   );
                 }
-                ),
-            const  SizedBox(
+            ),
+            const SizedBox(
               height: 16,
             ),
           ],
@@ -93,4 +99,5 @@ class _AddNoteFormState extends State<AddNoteForm> {
     );
   }
 }
+
 
